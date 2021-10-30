@@ -1,5 +1,6 @@
 import { throttle } from "lodash";
 import React, { useCallback, useEffect, useState } from "react";
+import Graph from "../../Components/Graph";
 import ValidatedGraphInput from "../../Components/ValidatedGraphInput";
 import Styles from "./MainPage.module.scss";
 export default function MainPage() {
@@ -25,6 +26,7 @@ export default function MainPage() {
         name="graph-input"
         className={Styles.graphInput}
       ></ValidatedGraphInput>
+      <Graph data={graph}></Graph>
     </div>
   );
 }
