@@ -11,7 +11,7 @@ export function renderGraph(container, data) {
   const { links, nodes } = getGraphFromString(data);
 
   const name = (d) => {
-    return d.name;
+    return d.id;
   };
   container.current.innerHTML = "";
   const simulation = d3
@@ -31,7 +31,7 @@ export function renderGraph(container, data) {
   const link = svg
     .append("g")
     .attr("stroke", "#999")
-    .attr("stroke-opacity", 0.6)
+    .attr("stroke-opacity", 1)
     .selectAll("line")
     .data(links)
     .join("line")
@@ -93,12 +93,12 @@ export function renderGraph(container, data) {
 
 function getGraphFromString(data) {
   let graph = parseGraphFromString(data);
-  const nodes = Array.from(graph.nodes).map((x, i) => ({ id: i, name: x }));
+  const nodes = Array.from(graph.nodes).map((x, i) => ({ id: x }));
   return {
     nodes,
     links: graph.links.map((x) => ({
-      target: nodes.find((n) => n.name === x[0]).id,
-      source: nodes.find((n) => n.name === x[1]).id,
+      target: x[0],
+      source: x[1],
     })),
   };
 }
