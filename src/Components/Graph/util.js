@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { parseGraphFromString } from "../../util/graph";
+import { parseGraphFromString } from "../../util/graph-string";
 
 const COLOR = "#ccc";
 

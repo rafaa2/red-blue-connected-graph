@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes } from "react";
-import { validateGraphInputString } from "../../util/graph";
+import { validateGraphInputString } from "../../util/graph-string";
 
 interface ValidatedGraphInputProps
   extends InputHTMLAttributes<HTMLInputElement> {}
