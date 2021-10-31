@@ -19,7 +19,7 @@ interface BasicGraph<T, S = T> {
 }
 
 export function validateGraphInputString(str: string): string {
-  // Remove All whitespaces which are not after a comma (for better display)
+  // Removes All whitespaces which are not after a comma (for better display)
   str = str.replaceAll(/[^, ] /g, "");
   // Ensure that input in correct format
   return replace(str, GRAPH_REGEX, (match, arg) => match.split("").join("-"));
@@ -82,7 +82,6 @@ export function parseBasicGraphFromGraph(
       }
     });
   });
-  console.log(graph, graph.getNodes());
   return {
     nodes,
     links,

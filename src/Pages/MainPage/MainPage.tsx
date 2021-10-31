@@ -1,5 +1,5 @@
 import { throttle } from "lodash";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import GraphD3 from "../../Components/GraphD3";
 
 import ValidatedGraphInput from "../../Components/ValidatedGraphInput";
@@ -9,10 +9,8 @@ import Styles from "./MainPage.module.scss";
 
 export default function MainPage() {
   const [graphString, setGraphString] = useState<string>("");
-
   const [isConnected, setIsConnected] = useState<boolean>(true);
   const [isRedBlue, setIsRedBlue] = useState(true);
-
   const [throttledGraphData, setThrottledGraphData] =
     useState<Graph<string> | undefined>(undefined);
   // Throttle the Function

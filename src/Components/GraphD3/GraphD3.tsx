@@ -6,6 +6,7 @@ interface GraphProps {
   data?: Graph<string>;
   className?: string;
 }
+
 function GraphD3(props: GraphProps) {
   const containerRef = React.useRef(null);
   const { data, className } = props;

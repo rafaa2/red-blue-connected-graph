@@ -88,8 +88,6 @@ export default class Graph<T> {
     const entryNode = this.nodes.get(this.nodes.entries().next().value[0]);
     if (entryNode) {
       this.depthFirstSearch(entryNode, visited);
-      console.log(visited, this.nodes);
-
       if (visited.size === this.nodes.size) return true;
       return false;
     }
