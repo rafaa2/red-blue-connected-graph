@@ -5,10 +5,12 @@ import ValidatedGraphInput from "../../Components/ValidatedGraphInput";
 import Styles from "./MainPage.module.scss";
 export default function MainPage() {
   const [graph, setGraph] = useState("");
-
+  const [throttledGraphData, setThrottledGraphData] = useState(graph);
   // Throttle the Function
   const throttledEffect = useCallback(
-    throttle((str) => {}, 1000),
+    throttle((str) => {
+      setThrottledGraphData(str);
+    }, 1000),
     []
   );
 
@@ -26,7 +28,10 @@ export default function MainPage() {
           className={Styles.graphInput}
         ></ValidatedGraphInput>
       </div>
-      <Graph data={graph} className={Styles.graphContainer}></Graph>
+      <Graph
+        data={throttledGraphData}
+        className={Styles.graphContainer}
+      ></Graph>
     </div>
   );
 }
