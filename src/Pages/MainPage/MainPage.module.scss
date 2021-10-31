@@ -1,6 +1,13 @@
 .MainPage {
   padding: 24px;
+  display: flex;
+  gap: 10px;
   .graphInput {
     font-size: 1.5em;
+  }
+  .graphContainer {
+    height: calc(100vh - (24px * 2));
+    width: 100%;
+    border: 1px solid #000;
   }
 }

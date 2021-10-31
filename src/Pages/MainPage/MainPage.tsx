@@ -8,9 +8,7 @@ export default function MainPage() {
 
   // Throttle the Function
   const throttledEffect = useCallback(
-    throttle((str) => {
-      console.log("Called and value is :", str);
-    }, 2000),
+    throttle((str) => {}, 1000),
     []
   );
 
@@ -20,13 +18,15 @@ export default function MainPage() {
   }, [graph]);
   return (
     <div className={Styles.MainPage}>
-      <ValidatedGraphInput
-        onChange={(e) => setGraph(e.target.value)}
-        value={graph}
-        name="graph-input"
-        className={Styles.graphInput}
-      ></ValidatedGraphInput>
-      <Graph data={graph}></Graph>
+      <div>
+        <ValidatedGraphInput
+          onChange={(e) => setGraph(e.target.value)}
+          value={graph}
+          name="graph-input"
+          className={Styles.graphInput}
+        ></ValidatedGraphInput>
+      </div>
+      <Graph data={graph} className={Styles.graphContainer}></Graph>
     </div>
   );
 }
