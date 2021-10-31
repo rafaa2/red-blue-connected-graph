@@ -8,7 +8,11 @@ import { parseGraphfromString } from "../../util/graph-string";
 import Styles from "./MainPage.module.scss";
 
 export default function MainPage() {
-  const [graph, setGraph] = useState("");
+  const [graphString, setGraphString] = useState<string>("");
+
+  const [isConnected, setIsConnected] = useState<boolean>(true);
+  const [isRedBlue, setIsRedBlue] = useState(true);
+
   const [throttledGraphData, setThrottledGraphData] =
     useState<Graph<string> | undefined>(undefined);
   // Throttle the Function
@@ -16,26 +20,37 @@ export default function MainPage() {
     throttle((str) => {
       const graph = parseGraphfromString(str);
       setThrottledGraphData(graph);
-      console.log("Nodes:", graph.getNodes());
-      console.log("isConnectedGraph:", graph.isConnectedGraph());
-      console.log("isRedBlue", graph.isRedBlue());
+      setIsConnected(graph.isConnectedGraph());
+      setIsRedBlue(graph.isRedBlue());
     }, 1000),
     []
   );
 
   useEffect(() => {
-    throttledEffect(graph);
+    throttledEffect(graphString);
     return () => {};
-  }, [graph]);
+  }, [graphString]);
   return (
     <div className={Styles.MainPage}>
       <div>
         <ValidatedGraphInput
-          onChange={(e) => setGraph(e.target.value)}
-          value={graph}
+          onChange={(e) => setGraphString(e.target.value)}
+          value={graphString}
           name="graph-input"
           className={Styles.graphInput}
         ></ValidatedGraphInput>
+        {graphString && (
+          <ul className={Styles.result}>
+            <li>
+              The Graph is:&nbsp;
+              {isConnected ? "connected" : "disconnected"}
+            </li>
+            <li>
+              The Graph is:&nbsp;
+              {isRedBlue ? "red-blue" : "not red-blue"}
+            </li>
+          </ul>
+        )}
       </div>
       <GraphD3
         data={throttledGraphData}

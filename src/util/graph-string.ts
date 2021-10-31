@@ -42,7 +42,6 @@ export function parseBasicGraphFromString(str: string): BasicGraph<string> {
       const link = g.split("-").filter((x) => x);
 
       for (let index = 0; index < link.length - 1; index++) {
-        console.log(link[index], !link[index + 1]);
         links = [...links, [link[index], link[index + 1]]];
       }
       return [...acc, ...link];
