@@ -5,7 +5,7 @@ interface GraphProps {
   data: string;
   className?: string;
 }
-function Graph(props: GraphProps) {
+function GraphD3(props: GraphProps) {
   const containerRef = React.useRef(null);
   const { data, className } = props;
   useEffect(() => {
@@ -21,4 +21,4 @@ function Graph(props: GraphProps) {
   return <div className={className} ref={containerRef}></div>;
 }
 
-export default React.memo(Graph);
+export default React.memo(GraphD3);

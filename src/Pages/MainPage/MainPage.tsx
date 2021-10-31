@@ -1,8 +1,12 @@
 import { throttle } from "lodash";
 import React, { useCallback, useEffect, useState } from "react";
-import Graph from "../../Components/Graph";
+import GraphD3 from "../../Components/GraphD3";
+
 import ValidatedGraphInput from "../../Components/ValidatedGraphInput";
+import Graph from "../../models/Graph";
+import { parseGraphfromString } from "../../util/graph-string";
 import Styles from "./MainPage.module.scss";
+
 export default function MainPage() {
   const [graph, setGraph] = useState("");
   const [throttledGraphData, setThrottledGraphData] = useState(graph);
@@ -10,6 +14,10 @@ export default function MainPage() {
   const throttledEffect = useCallback(
     throttle((str) => {
       setThrottledGraphData(str);
+      const graph = parseGraphfromString(str);
+      console.log("Nodes:", graph.getNodes());
+      console.log("isConnectedGraph:", graph.isConnectedGraph());
+      console.log("isRedBlue", graph.isRedBlue());
     }, 1000),
     []
   );
@@ -28,10 +36,10 @@ export default function MainPage() {
           className={Styles.graphInput}
         ></ValidatedGraphInput>
       </div>
-      <Graph
+      <GraphD3
         data={throttledGraphData}
         className={Styles.graphContainer}
-      ></Graph>
+      ></GraphD3>
     </div>
   );
 }

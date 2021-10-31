@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { parseGraphFromString } from "../../util/graph-string";
+import { parseBasicGraphFromString } from "../../util/graph-string";
 
 const COLOR = "#ccc";
 
@@ -92,7 +92,7 @@ export function renderGraph(container, data) {
 }
 
 function getGraphFromString(data) {
-  let graph = parseGraphFromString(data);
+  let graph = parseBasicGraphFromString(data);
   const nodes = Array.from(graph.nodes).map((x, i) => ({ id: x }));
   return {
     nodes,

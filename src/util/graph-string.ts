@@ -1,4 +1,5 @@
 import { replace } from "lodash";
+import Graph from "../models/Graph";
 
 export const GRAPH_REGEX = /([^-, ][^-,])/g;
 
@@ -14,7 +15,7 @@ export function validateGraphInputString(str: string): string {
   return replace(str, GRAPH_REGEX, (match, arg) => match.split("").join("-"));
 }
 
-export function parseGraphFromString(str: string): BasicGraph {
+export function parseBasicGraphFromString(str: string): BasicGraph {
   if (!str) {
     return {
       links: [],
@@ -40,4 +41,17 @@ export function parseGraphFromString(str: string): BasicGraph {
     links,
     nodes,
   };
+}
+
+export function parseGraphfromString(str: string): Graph<string> {
+  if (!str) {
+    return new Graph<string>();
+  }
+  const graph = new Graph<string>();
+  const basicGraph = parseBasicGraphFromString(str);
+  basicGraph.nodes.forEach((x) => graph.addNode(x));
+  basicGraph.links.forEach((l) => {
+    graph.addEdge(l[0], l[1]);
+  });
+  return graph;
 }
