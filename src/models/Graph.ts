@@ -60,9 +60,6 @@ export default class Graph<T> {
     return cloneDeep(this.nodes);
   }
 
-  //   getLinks() {
-  //     return
-  //   }
 
   /**
    * Depth-first search
@@ -87,6 +84,7 @@ export default class Graph<T> {
       return false;
     }
     const visited: Map<T, boolean> = new Map();
+    
     const entryNode = this.nodes.get(this.nodes.entries().next().value[0]);
     if (entryNode) {
       this.depthFirstSearch(entryNode, visited);

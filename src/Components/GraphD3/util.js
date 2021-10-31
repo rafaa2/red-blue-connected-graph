@@ -1,8 +1,12 @@
 import * as d3 from "d3";
 import { parseBasicGraphFromGraph } from "../../util/graph-string";
 
-const COLOR = "#ccc";
 
+/**
+ * Render the D3 Graph
+ * @param {React.MutableRefObject} container 
+ * @param {Graph<string>} data 
+ */
 export function renderGraph(container, data) {
   const containerRect = container.current?.getBoundingClientRect();
 
@@ -93,10 +97,14 @@ export function renderGraph(container, data) {
   };
 }
 
+
+/**
+ * Adapt Graph to D3 Node/Link struct
+ * @param {Graph<string>} data 
+ */
 function getGraphD3FromGraph(data) {
   let graph = parseBasicGraphFromGraph(data);
-  console.log("BasicGraphFrom Gprah", graph);
-  const nodes = Array.from(graph.nodes); //.map((x, i) => ({ id: x }));
+  const nodes = Array.from(graph.nodes); 
   return {
     nodes,
     links: graph.links.map((x) => ({
