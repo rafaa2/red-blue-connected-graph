@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
+import Graph from "../../models/Graph.js";
 import { renderGraph } from "./util.js";
 
 interface GraphProps {
-  data: string;
+  data?: Graph<string>;
   className?: string;
 }
 function GraphD3(props: GraphProps) {
@@ -11,7 +12,7 @@ function GraphD3(props: GraphProps) {
   useEffect(() => {
     let destroyFn;
 
-    if (containerRef.current) {
+    if (containerRef.current && data) {
       const { destroy } = renderGraph(containerRef, data);
       destroyFn = destroy;
     }

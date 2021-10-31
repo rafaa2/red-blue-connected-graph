@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { parseBasicGraphFromString } from "../../util/graph-string";
+import { parseBasicGraphFromGraph } from "../../util/graph-string";
 
 const COLOR = "#ccc";
 
@@ -8,17 +8,19 @@ export function renderGraph(container, data) {
 
   const height = containerRect?.height || 0;
   const width = containerRect?.width || 0;
-  const { links, nodes } = getGraphFromString(data);
-
+  const { links, nodes } = getGraphD3FromGraph(data);
   const name = (d) => {
-    return d.id;
+    return d.name;
+  };
+  const color = (d) => {
+    return d.color === "RED" ? "#F00" : "#00F";
   };
   container.current.innerHTML = "";
   const simulation = d3
     .forceSimulation(nodes)
     .force(
       "link",
-      d3.forceLink(links).id((d) => d.id)
+      d3.forceLink(links).id((d) => d.name)
     )
     .force("charge", d3.forceManyBody().strength(-150))
     .force("x", d3.forceX())
@@ -45,7 +47,7 @@ export function renderGraph(container, data) {
     .data(nodes)
     .join("circle")
     .attr("r", 12)
-    .attr("fill", COLOR);
+    .attr("fill", color);
 
   const label = svg
     .append("g")
@@ -91,9 +93,10 @@ export function renderGraph(container, data) {
   };
 }
 
-function getGraphFromString(data) {
-  let graph = parseBasicGraphFromString(data);
-  const nodes = Array.from(graph.nodes).map((x, i) => ({ id: x }));
+function getGraphD3FromGraph(data) {
+  let graph = parseBasicGraphFromGraph(data);
+  console.log("BasicGraphFrom Gprah", graph);
+  const nodes = Array.from(graph.nodes); //.map((x, i) => ({ id: x }));
   return {
     nodes,
     links: graph.links.map((x) => ({

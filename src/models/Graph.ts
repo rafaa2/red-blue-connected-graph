@@ -1,3 +1,5 @@
+import { cloneDeep } from "lodash";
+
 export type RedBlue = "RED" | "BLUE";
 export class Node<Char> {
   data: Char;
@@ -55,8 +57,12 @@ export default class Graph<T> {
   }
 
   getNodes() {
-    return Object.assign({}, this.nodes);
+    return cloneDeep(this.nodes);
   }
+
+  //   getLinks() {
+  //     return
+  //   }
 
   /**
    * Depth-first search
@@ -81,12 +87,6 @@ export default class Graph<T> {
       return false;
     }
     const visited: Map<T, boolean> = new Map();
-    console.log(
-      this.nodes.entries(),
-      this.nodes.entries().next(),
-      this.nodes.entries().next().value
-    );
-
     const entryNode = this.nodes.get(this.nodes.entries().next().value[0]);
     if (entryNode) {
       this.depthFirstSearch(entryNode, visited);

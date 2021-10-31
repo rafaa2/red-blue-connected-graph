@@ -9,12 +9,13 @@ import Styles from "./MainPage.module.scss";
 
 export default function MainPage() {
   const [graph, setGraph] = useState("");
-  const [throttledGraphData, setThrottledGraphData] = useState(graph);
+  const [throttledGraphData, setThrottledGraphData] =
+    useState<Graph<string> | undefined>(undefined);
   // Throttle the Function
   const throttledEffect = useCallback(
     throttle((str) => {
-      setThrottledGraphData(str);
       const graph = parseGraphfromString(str);
+      setThrottledGraphData(graph);
       console.log("Nodes:", graph.getNodes());
       console.log("isConnectedGraph:", graph.isConnectedGraph());
       console.log("isRedBlue", graph.isRedBlue());
