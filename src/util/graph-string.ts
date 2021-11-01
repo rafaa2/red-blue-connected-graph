@@ -82,7 +82,6 @@ export function parseBasicGraphFromGraph(
       }
     });
   });
-  console.log(graph, graph.getNodes());
   return {
     nodes,
     links,
