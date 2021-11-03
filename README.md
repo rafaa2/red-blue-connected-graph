@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### `See Live`
+
+Click here please: [Live Preview](https://rafaa2.github.io/red-blue-connected-graph/).
+
+
 ## Available Scripts
 
 In the project directory, you can run:
