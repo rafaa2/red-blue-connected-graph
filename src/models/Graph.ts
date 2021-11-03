@@ -60,7 +60,6 @@ export default class Graph<T> {
     return cloneDeep(this.nodes);
   }
 
-
   /**
    * Depth-first search
    *
@@ -81,10 +80,10 @@ export default class Graph<T> {
 
   isConnectedGraph() {
     if (this.nodes.size === 0) {
-      return false;
+      return true;
     }
     const visited: Map<T, boolean> = new Map();
-    
+
     const entryNode = this.nodes.get(this.nodes.entries().next().value[0]);
     if (entryNode) {
       this.depthFirstSearch(entryNode, visited);
