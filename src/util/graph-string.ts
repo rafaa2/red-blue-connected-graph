@@ -5,7 +5,7 @@ export const GRAPH_REGEX = /([^-, ][^-,])/g;
 
 interface BasicNode {
   name: string;
-  color: RedBlue;
+  color?: RedBlue;
 }
 
 /**

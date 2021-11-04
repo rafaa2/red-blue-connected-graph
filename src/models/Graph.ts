@@ -3,13 +3,12 @@ import { cloneDeep } from "lodash";
 export type RedBlue = "RED" | "BLUE";
 export class Node<Char> {
   data: Char;
-  color: RedBlue;
+  color?: RedBlue;
   adjacent: Node<Char>[];
 
-  constructor(data: Char, color: RedBlue) {
+  constructor(data: Char) {
     this.data = data;
     this.adjacent = [];
-    this.color = color;
   }
 
   addAdjacent(node: Node<Char>): void {
@@ -35,8 +34,7 @@ export default class Graph<T> {
 
     if (node) return node;
 
-    node = new Node(data, this.nextColor);
-    this.nextColor = this.nextColor === "RED" ? "BLUE" : "RED";
+    node = new Node(data);
     this.nodes.set(data, node);
     return node;
   }
@@ -94,7 +92,29 @@ export default class Graph<T> {
     return false;
   }
 
-  isRedBlue() {
-    return this._isRedBlue && this.isConnectedGraph();
+  isRedBlue(): boolean {
+    if (this.nodes.size === 0) {
+      return true;
+    }
+    const entryNode = this.nodes.get(this.nodes.entries().next().value[0]);
+    if (entryNode) {
+      return this.isRedBlueAux(entryNode);
+    }
+    return true;
+  }
+  isRedBlueAux(entryNode: Node<T>, nextColor: RedBlue = "RED"): boolean {
+    entryNode.color = nextColor;
+    nextColor = nextColor === "RED" ? "BLUE" : "RED";
+    let isRedBlue = true;
+    entryNode.adjacent.forEach((node) => {
+      if (node.color === entryNode.color) {
+        isRedBlue = false;
+      } else if (node.color === nextColor) {
+        isRedBlue = true;
+      } else {
+        isRedBlue = this.isRedBlueAux(node, nextColor);
+      }
+    });
+    return isRedBlue;
   }
 }
