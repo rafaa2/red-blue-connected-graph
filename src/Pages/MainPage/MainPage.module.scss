@@ -2,6 +2,9 @@
   padding: 24px;
   display: flex;
   gap: 10px;
+  .hint {
+    font-size: 0.75rem;
+  }
   .graphInput {
     font-size: 1.5em;
   }

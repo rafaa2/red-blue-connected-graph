@@ -13,8 +13,9 @@ export default function MainPage() {
   const [isConnected, setIsConnected] = useState<boolean>(true);
   const [isRedBlue, setIsRedBlue] = useState(true);
 
-  const [throttledGraphData, setThrottledGraphData] =
-    useState<Graph<string> | undefined>(undefined);
+  const [throttledGraphData, setThrottledGraphData] = useState<
+    Graph<string> | undefined
+  >(undefined);
   // Throttle the Function
   const throttledEffect = useCallback(
     throttle((str) => {
@@ -37,6 +38,8 @@ export default function MainPage() {
           onChange={(e) => setGraphString(e.target.value)}
           value={graphString}
           name="graph-input"
+          lable="type your graph string (x-x-....-x, x-x-....-x, ...):"
+          labelClass={Styles.hint}
           className={Styles.graphInput}
         ></ValidatedGraphInput>
         {graphString && (
