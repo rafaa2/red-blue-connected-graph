@@ -18,10 +18,6 @@ export class Node<Char> {
 
 export default class Graph<T> {
   private nodes: Map<T, Node<T>> = new Map();
-  private nextColor: RedBlue = "RED";
-  private _isRedBlue: boolean = true;
-
-  constructor() {}
 
   /**
    * Add a new node if it was not added before
@@ -51,7 +47,6 @@ export default class Graph<T> {
 
     sourceNode.addAdjacent(destinationNode);
     destinationNode.addAdjacent(sourceNode);
-    if (sourceNode.color === destinationNode.color) this._isRedBlue = false;
   }
 
   getNodes() {
@@ -96,6 +91,7 @@ export default class Graph<T> {
     if (this.nodes.size === 0) {
       return true;
     }
+
     const entryNode = this.nodes.get(this.nodes.entries().next().value[0]);
     if (entryNode) {
       return this.isRedBlueAux(entryNode);

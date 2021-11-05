@@ -20,9 +20,9 @@ export default function MainPage() {
   const throttledEffect = useCallback(
     throttle((str) => {
       const graph = parseGraphfromString(str);
-      setThrottledGraphData(graph);
       setIsConnected(graph.isConnectedGraph());
       setIsRedBlue(graph.isRedBlue());
+      setThrottledGraphData(graph);
     }, 1000),
     []
   );
@@ -50,7 +50,7 @@ export default function MainPage() {
             </li>
             <li>
               The Graph is:&nbsp;
-              {isRedBlue ? "red-blue" : "not red-blue"}
+              {isRedBlue ? "red-blue" : "not red-blue"} &nbsp; colorable
             </li>
           </ul>
         )}
