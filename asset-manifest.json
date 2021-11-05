@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/red-blue-connected-graph/static/css/main.8ede050b.chunk.css",
-    "main.js": "/red-blue-connected-graph/static/js/main.189538f6.chunk.js",
-    "main.js.map": "/red-blue-connected-graph/static/js/main.189538f6.chunk.js.map",
+    "main.js": "/red-blue-connected-graph/static/js/main.2dac11e5.chunk.js",
+    "main.js.map": "/red-blue-connected-graph/static/js/main.2dac11e5.chunk.js.map",
     "runtime-main.js": "/red-blue-connected-graph/static/js/runtime-main.d5e7ac9b.js",
     "runtime-main.js.map": "/red-blue-connected-graph/static/js/runtime-main.d5e7ac9b.js.map",
     "static/js/2.6d961b8b.chunk.js": "/red-blue-connected-graph/static/js/2.6d961b8b.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.d5e7ac9b.js",
     "static/js/2.6d961b8b.chunk.js",
     "static/css/main.8ede050b.chunk.css",
-    "static/js/main.189538f6.chunk.js"
+    "static/js/main.2dac11e5.chunk.js"
   ]
 }
